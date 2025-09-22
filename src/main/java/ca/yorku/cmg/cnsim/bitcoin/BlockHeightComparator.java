@@ -17,7 +17,7 @@ import java.util.Comparator;
  * need to be processed first, but deterministic ordering is required for blocks
  * at the same height level.
  * 
- * @author Dr Dr. Sotirios
+ * @author Dr Dr. Sotirios Liaskos Liaskos
  * @see Block
  * @see Comparator
  */

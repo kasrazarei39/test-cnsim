@@ -29,8 +29,10 @@ jobs:
       - name: Generate Javadoc
         run: mvn -B -DskipTests clean javadoc:javadoc
         
-      - name: Copy index page
-        run: cp index.html target/site/
+      - name: Copy index page and assets
+        run: |
+          cp index.html target/site/
+          cp -r assets target/site/
         
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4

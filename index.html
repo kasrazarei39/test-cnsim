@@ -3,56 +3,385 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CNSim Bitcoin - Documentation</title>
+    <title>CNSim Bitcoin - Consensus Network Simulator | York University</title>
+    <meta name="description" content="Bitcoin Consensus Network Simulator developed at York University under the supervision of Dr. Sotirios Liaskos">
+    <!-- Favicon would go here -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --york-red: #da020e;
+            --york-dark: #2c2c2c;
+            --text-primary: #333;
+            --text-secondary: #666;
+            --background: #ffffff;
+            --border: #e5e5e5;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --accent: #0066cc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--york-red) 0%, #b8001a 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .university-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .york-logo {
+            height: 20px;
+            width: auto;
+            flex-shrink: 0;
+        }
+
+        .main-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .supervisor-info {
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        /* Action Section */
+        .action-section {
+            padding: 3rem 0;
+            text-align: center;
+            background: #f8f9fa;
+        }
+
+        .primary-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+        }
+
+        .primary-button:hover {
+            background: #0052a3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3);
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--york-dark);
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--york-dark);
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
             line-height: 1.6;
         }
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .button {
-            display: inline-block;
-            background-color: #007cba;
+
+        /* Technical Specs */
+        .tech-specs {
+            background: var(--york-dark);
             color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 4px;
-            margin: 10px;
+            padding: 3rem 0;
         }
-        .button:hover {
-            background-color: #005a8b;
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .spec-item {
+            padding: 1rem;
+        }
+
+        .spec-label {
+            font-size: 0.875rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: #f8f9fa;
+            padding: 3rem 0 2rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .footer-logo {
+            height: 50px;
+            width: auto;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .specs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>CNSim Bitcoin Simulator</h1>
-        <p>Consensus Network Simulator for Bitcoin Research</p>
-    </div>
-    
-    <div style="text-align: center;">
-        <a href="apidocs/" class="button">📚 View API Documentation</a>
-        <a href="https://github.com/[username]/[repository]" class="button">📁 Source Code</a>
-    </div>
-    
-    <div style="margin-top: 40px;">
-        <h2>About</h2>
-        <p>This is an event-based blockchain simulator specifically designed to simulate Bitcoin consensus network behavior. It's part of the larger CNSim (Consensus Network Simulator) framework.</p>
-        
-        <h3>Features</h3>
-        <ul>
-            <li>Bitcoin network behavior simulation</li>
-            <li>Honest and malicious node modeling</li>
-            <li>Transaction and block processing</li>
-            <li>Mining difficulty adjustment</li>
-            <li>Comprehensive reporting and analysis</li>
-        </ul>
-    </div>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="university-badge">
+                    York University Research Project
+                </div>
+                <h1 class="main-title">CNSim Bitcoin</h1>
+                <p class="subtitle">Advanced Consensus Network Simulator for Bitcoin Research</p>
+                <div class="supervisor-info">
+                    Under the supervision of <strong>Dr. Sotirios Liaskos</strong>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Action Section -->
+    <section class="action-section">
+        <div class="container">
+            <a href="apidocs/" class="primary-button">
+                📚 Explore API Documentation
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">About CNSim Bitcoin</h2>
+            <p class="section-subtitle">
+                An event-based blockchain simulator specifically designed to model and analyze Bitcoin consensus network behavior. 
+                This research tool enables comprehensive study of blockchain dynamics, consensus mechanisms, and network security.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⛓️</div>
+                    <h3 class="feature-title">Blockchain Simulation</h3>
+                    <p class="feature-description">
+                        Complete Bitcoin protocol implementation with block creation, validation, and chain management mechanisms.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3 class="feature-title">Network Analysis</h3>
+                    <p class="feature-description">
+                        Comprehensive network behavior modeling including honest and malicious node interactions with detailed reporting.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Event-Based Architecture</h3>
+                    <p class="feature-description">
+                        Efficient discrete event simulation engine optimized for large-scale blockchain network research.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Research Analytics</h3>
+                    <p class="feature-description">
+                        Advanced metrics collection and analysis tools for blockchain consensus research and security studies.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-title">Security Modeling</h3>
+                    <p class="feature-description">
+                        Sophisticated attack simulation capabilities including selfish mining and double-spending scenarios.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3 class="feature-title">Configurable Parameters</h3>
+                    <p class="feature-description">
+                        Extensive configuration options for network topology, mining parameters, and consensus rules.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section class="tech-specs">
+        <div class="container">
+            <h2 class="section-title" style="color: white; text-align: center; margin-bottom: 3rem;">Technical Specifications</h2>
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <div class="spec-label">Language</div>
+                    <div class="spec-value">Java 21</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Build System</div>
+                    <div class="spec-value">Maven</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Documentation</div>
+                    <div class="spec-value">Javadoc</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">License</div>
+                    <div class="spec-value">Academic</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <img src="assets/images/download.png" alt="York University" class="footer-logo">
+                <p>&copy; 2025 York University. CNSim Bitcoin Simulator developed under the supervision of Dr. Sotirios Liaskos.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

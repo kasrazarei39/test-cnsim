@@ -271,35 +271,6 @@ mvn clean javadoc:javadoc
 open docs/apidocs/index.html
 ```
 
-## 🎯 Project Structure Comparison
-
-### CNSim Bitcoin Structure:
-```
-cnsim-bitcoin/
-├── src/main/java/ca/yorku/cmg/cnsim/bitcoin/
-│   ├── BitcoinMainDriver.java
-│   ├── BitcoinNode.java
-│   ├── BitcoinNodeFactory.java
-│   ├── Block.java
-│   ├── Blockchain.java
-│   └── ... (other classes)
-├── pom.xml (with javadoc plugin)
-└── README.md
-```
-
-### Your Enhanced Structure:
-```
-test-cnsim/
-├── src/main/java/ca/yorku/cmg/cnsim/bitcoin/
-│   └── ... (same classes)
-├── .github/workflows/deploy-javadoc.yml
-├── index.html (custom landing page)
-├── assets/ (images and resources)
-├── docs/apidocs/ (generated documentation)
-├── pom.xml (simplified javadoc config)
-└── JAVADOC_SETUP_GUIDE.md (this file)
-```
-
 ## 🎉 Benefits of This Setup
 
 ✅ **Automated**: Documentation updates automatically with code changes  

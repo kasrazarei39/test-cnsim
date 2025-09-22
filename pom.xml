@@ -167,12 +167,8 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>3.11.1</version>
         <configuration>
-        	<outputDirectory>${basedir}</outputDirectory>
+        	<outputDirectory>${basedir}/docs</outputDirectory>
         	<doclint>all,-missing</doclint>
-        	<failOnError>false</failOnError>
-        	<additionalJOptions>
-        		<additionalJOption>-J-Dfile.encoding=UTF-8</additionalJOption>
-        	</additionalJOptions>
         </configuration>
         <executions>
             <execution>

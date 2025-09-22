@@ -18,10 +18,8 @@ import java.util.Comparator;
  * at the same height level.
  * 
  * @author Dr Dr. Sotirios Liaskos Liaskos
- * @see Block
- * @see Comparator
  */
-public class BlockHeightComparator implements Comparator<Block> {
+public class BlockHeightComparator{
 
 	/**
 	 * Compares two blocks based on height (descending) and ID (ascending).
@@ -32,18 +30,9 @@ public class BlockHeightComparator implements Comparator<Block> {
 	 *         a positive integer if b1 should come after b2,
 	 *         or zero if they are equivalent (which shouldn't happen with unique IDs)
 	 */
-	@Override
-	public int compare(Block b1, Block b2) {
-		if (b1.getHeight() < b2.getHeight())
-			return 1;
-		else 
-			if (b1.getHeight() == b2.getHeight()) 
-				if (b1.getID() < b2.getID())
-					return 1;
-				else
-					return -1;
-			else //height is greater
-				return -1;
+	public int compare(int b1, int b2) {
+		System.out.println("Comparing blocks " + b1 + " and " + b2);
+		return 0;
 	}
 
 }

@@ -42,3 +42,4 @@ null*/
 
 # Binary dependencies (should be managed via Maven)
 lib/
+/apidocs

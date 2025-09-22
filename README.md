@@ -1,1 +1,2 @@
-# test-cnsim
+# Consensus Network Simulator (CNSim)
+Description TBD.

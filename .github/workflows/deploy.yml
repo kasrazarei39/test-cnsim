@@ -14,10 +14,16 @@ jobs:
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     permissions:
       contents: read
       pages: write
       id-token: write
+    concurrency:
+      group: "pages"
+      cancel-in-progress: true
 
     steps:
       - name: Checkout
@@ -33,12 +39,6 @@ jobs:
           node-version: 20
           cache: npm
           cache-dependency-path: my-site/package-lock.json
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-        with:
-          # Automatically inject baseUrl in Docusaurus config with the Pages URL
-          static_site_generator: docusaurus
 
       - name: Restore cache
         uses: actions/cache@v4
@@ -59,6 +59,9 @@ jobs:
           npm run build
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: my-site/build
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -8,7 +8,7 @@ This is a template for Architecture Decision Records (ADRs). Copy this template 
 
 ## ADR-XXXX: [Title]
 
-**Status:** [Proposed | Accepted | Rejected | Deprecated | Superseded]  
+**Status:** <span class="adr-status-proposed">Proposed</span> | <span class="adr-status-accepted">Accepted</span> | <span class="adr-status-rejected">Rejected</span> | <span class="adr-status-deprecated">Deprecated</span> | <span class="adr-status-superseded">Superseded</span>  
 **Date:** [YYYY-MM-DD]  
 **Deciders:** [List of people involved in the decision]  
 **Consulted:** [List of people consulted]  

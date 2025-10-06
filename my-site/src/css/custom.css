@@ -4,27 +4,152 @@
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
+/* York University Color Scheme */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  /* York University Red (#E31837) */
+  --ifm-color-primary: #E31837;
+  --ifm-color-primary-dark: #C9152F;
+  --ifm-color-primary-darker: #BC142B;
+  --ifm-color-primary-darkest: #9B1124;
+  --ifm-color-primary-light: #E52B4F;
+  --ifm-color-primary-lighter: #E6365B;
+  --ifm-color-primary-lightest: #EA546F;
+  
+  /* York University Dark Blue (#003366) */
+  --ifm-color-secondary: #003366;
+  --ifm-color-secondary-dark: #002B55;
+  --ifm-color-secondary-darker: #00264D;
+  --ifm-color-secondary-darkest: #001F3F;
+  --ifm-color-secondary-light: #1A4777;
+  --ifm-color-secondary-lighter: #335A88;
+  --ifm-color-secondary-lightest: #4D6D99;
+  
+  /* York University Gold (#FFD700) */
+  --ifm-color-accent: #FFD700;
+  
+  /* Code and syntax highlighting */
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(227, 24, 55, 0.1);
+  
+  /* Background colors */
+  --ifm-background-color: #FFFFFF;
+  --ifm-background-surface-color: #F8F9FA;
+  
+  /* Text colors */
+  --ifm-font-color-base: #333333;
+  --ifm-heading-color: #003366;
+  
+  /* Navbar styling */
+  --ifm-navbar-background-color: #FFFFFF;
+  --ifm-navbar-link-color: #003366;
+  --ifm-navbar-link-hover-color: #E31837;
+  
+  /* Footer styling */
+  --ifm-footer-background-color: #003366;
+  --ifm-footer-color: #FFFFFF;
+  --ifm-footer-link-color: #FFFFFF;
+  --ifm-footer-link-hover-color: #FFD700;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Dark mode adjustments */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  /* Keep York red as primary but adjust for dark mode */
+  --ifm-color-primary: #FF1A32;
+  --ifm-color-primary-dark: #FF4A5C;
+  --ifm-color-primary-darker: #FF3A4E;
+  --ifm-color-primary-darkest: #FF1A32;
+  --ifm-color-primary-light: #FF1A32;
+  --ifm-color-primary-lighter: #FF1A32;
+  --ifm-color-primary-lightest: #FF1A32;
+  
+  /* Dark blue for dark mode */
+  --ifm-color-secondary: #4A90E2;
+  --ifm-color-secondary-dark: #3A7BC7;
+  --ifm-color-secondary-darker: #2A6BB2;
+  --ifm-color-secondary-darkest: #1A5B9D;
+  --ifm-color-secondary-light: #5AA0F7;
+  --ifm-color-secondary-lighter: #6AB0FF;
+  --ifm-color-secondary-lightest: #7AC0FF;
+  
+  /* Dark mode backgrounds */
+  --ifm-background-color: #1A1A1A;
+  --ifm-background-surface-color: #2D2D2D;
+  
+  /* Dark mode text */
+  --ifm-font-color-base: #E0E0E0;
+  --ifm-heading-color: #FFFFFF;
+  
+  /* Dark mode navbar */
+  --ifm-navbar-background-color: #2D2D2D;
+  --ifm-navbar-link-color: #E0E0E0;
+  --ifm-navbar-link-hover-color: #FF6B7A;
+  
+  /* Dark mode footer */
+  --ifm-footer-background-color: #1A1A1A;
+  --ifm-footer-color: #E0E0E0;
+  --ifm-footer-link-color: #E0E0E0;
+  --ifm-footer-link-hover-color: #FFD700;
+  
+  --docusaurus-highlighted-code-line-bg: rgba(255, 107, 122, 0.2);
+}
+
+/* Custom York University styling */
+.navbar__logo {
+  border-radius: 4px;
+}
+
+.navbar__title {
+  font-weight: 600;
+  color: var(--ifm-color-secondary);
+}
+
+.footer__title {
+  color: var(--ifm-color-accent);
+  font-weight: 600;
+}
+
+/* ADR status badges */
+.adr-status-proposed {
+  background-color: #FFD700;
+  color: #003366;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+.adr-status-accepted {
+  background-color: #28A745;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+.adr-status-rejected {
+  background-color: #DC3545;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+.adr-status-deprecated {
+  background-color: #6C757D;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+.adr-status-superseded {
+  background-color: #17A2B8;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  font-weight: 600;
 }

@@ -7,7 +7,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'CNSim Documentation',
   tagline: 'Architecture Decision Records and Technical Documentation',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/york-logo.png',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -44,22 +44,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
+            'https://github.com/kasrazarei39/test-cnsim/tree/main/my-site/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -77,8 +62,10 @@ const config: Config = {
     navbar: {
       title: 'CNSim Documentation',
       logo: {
-        alt: 'CNSim Logo',
-        src: 'img/logo.svg',
+        alt: 'York University Logo',
+        src: 'img/york-logo.png',
+        width: 32,
+        height: 32,
       },
       items: [
         {
@@ -87,9 +74,8 @@ const config: Config = {
           position: 'left',
           label: 'Documentation',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/kasrazarei39/test-cnsim',
           label: 'GitHub',
           position: 'right',
         },
@@ -132,17 +118,13 @@ const config: Config = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/kasrazarei39/test-cnsim',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} CNSim Project. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} York University - CNSim Project. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

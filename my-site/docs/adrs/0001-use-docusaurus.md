@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # ADR-0001: Use Docusaurus for Documentation
 
-**Status:** Accepted  
+**Status:** <span class="adr-status-accepted">Accepted</span>  
 **Date:** 2025-01-27  
 **Deciders:** Development Team  
 **Consulted:** Technical Leads  

@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # ADR-0002: ADR Numbering Convention
 
-**Status:** Accepted  
+**Status:** <span class="adr-status-accepted">Accepted</span>  
 **Date:** 2025-01-27  
 **Deciders:** Development Team  
 **Consulted:** Technical Leads  

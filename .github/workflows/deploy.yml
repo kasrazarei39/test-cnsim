@@ -1,0 +1,64 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    # Review gh actions docs if you want to further define triggers, paths, etc
+    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # Not needed if last 2 commits are already pushed
+          # ref: ${{ github.ref }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: my-site/package-lock.json
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        with:
+          # Automatically inject baseUrl in Docusaurus config with the Pages URL
+          static_site_generator: docusaurus
+
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: my-site/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('my-site/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: |
+          cd my-site
+          npm ci
+
+      - name: Build with Docusaurus
+        run: |
+          cd my-site
+          npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: my-site/build
